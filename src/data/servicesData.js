@@ -1,5 +1,8 @@
 import { Landmark, FileCheck2, TrendingUp, Building2, Laptop, Factory, HeartPulse } from "lucide-react";
 
+
+
+
 // Used on Home ("Core Competencies") and can be reused on Services
 export const coreCompetencies = [
   {

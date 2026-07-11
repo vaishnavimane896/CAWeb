@@ -4,38 +4,28 @@
   --font-heading: "Plus Jakarta Sans", sans-serif;
   --font-body: "Inter", sans-serif;
 
-  --color-primary: #0F172A;
+  /* Deep Charcoal/Obsidian */
+  --color-primary: #090D16;
   --color-primary-foreground: #FFFFFF;
 
-  --color-secondary: #059669;
+  /* Electric Indigo / Cyber Blue (Highly Creative & Modern) */
+  --color-secondary: #4F46E5;
   --color-secondary-foreground: #FFFFFF;
 
-  --color-accent: #4F46E5;
-  --color-accent-foreground: #FFFFFF;
+  /* Soft Lavender Gray */
+  --color-accent: #818CF8;
+  --color-accent-foreground: #090D16;
 
+  /* Clean Premium Off-White Surfaces */
   --color-surface: #F8FAFC;
   --color-surface-card: #FFFFFF;
   --color-border: #E2E8F0;
 
-  --color-slate-600: #475569;
-  --color-slate-900: #0F172A;
+  --color-slate-600: #64748B;
+  --color-slate-900: #090D16;
 
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
-}
-
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-surface);
-  color: var(--color-slate-900);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-}
-
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
 }
