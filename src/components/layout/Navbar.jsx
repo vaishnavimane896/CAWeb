@@ -14,7 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
-
+  // consultation
   // Handle scroll animation effect for navbar background scaling
   useEffect(() => {
     const handleScroll = () => {
@@ -89,7 +89,7 @@ export default function Navbar() {
             className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-heading font-bold text-xs uppercase tracking-wider px-6 h-10 rounded-xl relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 shadow-lg shadow-secondary/20 hover:shadow-xl hover:shadow-secondary/30 group"
           >
             <span className="flex items-center gap-2">
-              Consultation
+              <Link to="/consaltation" className="relative z-10">Book Consultation</Link>
               <ArrowUpRight size={14} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </span>
           </Button>

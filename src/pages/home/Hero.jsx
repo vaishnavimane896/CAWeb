@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { BadgeCheck, TrendingUp, Building2, Landmark, Factory, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { Link } from "react-router-dom";
 const trustIcons = [Building2, Landmark, Factory, Briefcase, Building2];
 const bars = [40, 55, 48, 70, 85, 100];
 
@@ -30,12 +30,16 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/consaltation" className="relative z-10">
             <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white">
               Book Consultation
             </Button>
+            </Link>
+            <Link to="/services" className="relative z-10">
             <Button size="lg" variant="outline">
               Explore Services
             </Button>
+            </Link>
           </div>
 
           <div className="mt-12 pt-6 border-t border-border">

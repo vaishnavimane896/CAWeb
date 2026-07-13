@@ -1,38 +1,96 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  Landmark,
-  TrendingUp,
-  FileCheck2,
-  Users,
-  MessageCircle,
-  ClipboardList,
+  Compass,
+  ClipboardCheck,
+  Presentation,
   Calendar,
   Clock,
   ArrowLeft,
   ArrowRight,
   ShieldCheck,
   CheckCircle,
-  Building2,
-  Briefcase
+  Briefcase,
+  Landmark,
+  ReceiptText,
+  Gem,
+  FileSearch,
+  Award,
+  Users2,
+  Lock,
+  PhoneCall,
+  FileText,
+  Handshake,
+  Star,
+  Quote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 const steps = ["Consultation Mode", "Practice Area", "Schedule", "Finalize"];
 
 const consultationTypes = [
-  { id: "new-client", icon: Users, title: "Discovery Consultation", description: "Initial 30-min strategy alignment session." },
-  { id: "existing-review", icon: ClipboardList, title: "Corporate Review", description: "Deep-dive analysis on active advisory matters." },
-  { id: "general-inquiry", icon: MessageCircle, title: "Strategic Briefing", description: "Quick consultation regarding upcoming changes." },
+  { id: "new-client", icon: Compass, color: "text-indigo-600", bg: "bg-indigo-50", title: "Discovery Consultation", description: "Initial 30-min strategy alignment session." },
+  { id: "existing-review", icon: ClipboardCheck, color: "text-emerald-600", bg: "bg-emerald-50", title: "Corporate Review", description: "Deep-dive analysis on active advisory matters." },
+  { id: "general-inquiry", icon: Presentation, color: "text-amber-600", bg: "bg-amber-50", title: "Strategic Briefing", description: "Quick consultation regarding upcoming changes." },
 ];
 
 const serviceAreas = [
-  { icon: Landmark, title: "Corporate Taxation & Structure", description: "Strategic planning, domestic & international cross-border compliance." },
-  { icon: FileCheck2, title: "GST Advisory & Auditing", description: "Periodic structure reconciliation, filings, and regulatory reviews." },
-  { icon: TrendingUp, title: "Wealth Engineering", description: "Capital portfolio growth optimization, asset structuring, and planning." },
-  { icon: Building2, title: "Statutory & Private Audits", description: "Comprehensive regulatory compliance checks and independent reporting." },
+  { icon: Landmark, color: "text-indigo-600", bg: "bg-indigo-50", title: "Corporate Taxation & Structure", description: "Strategic planning, domestic & international cross-border compliance." },
+  { icon: ReceiptText, color: "text-amber-600", bg: "bg-amber-50", title: "GST Advisory & Auditing", description: "Periodic structure reconciliation, filings, and regulatory reviews." },
+  { icon: Gem, color: "text-rose-600", bg: "bg-rose-50", title: "Wealth Engineering", description: "Capital portfolio growth optimization, asset structuring, and planning." },
+  { icon: FileSearch, color: "text-emerald-600", bg: "bg-emerald-50", title: "Statutory & Private Audits", description: "Comprehensive regulatory compliance checks and independent reporting." },
+];
+
+// --- New section data ---
+
+const trustPoints = [
+  { icon: Award, value: "15+", label: "Years of Practice" },
+  { icon: Users2, value: "500+", label: "Corporate Clients" },
+  { icon: ShieldCheck, value: "99.8%", label: "Compliance Success Rate" },
+  { icon: Lock, value: "100%", label: "Confidential Engagements" },
+];
+
+const processTimeline = [
+  {
+    icon: PhoneCall,
+    color: "text-indigo-600",
+    bg: "bg-indigo-50",
+    title: "Confirmation Call",
+    description: "A member of our team reaches out within 2 business hours to confirm your slot and gather initial context.",
+  },
+  {
+    icon: FileText,
+    color: "text-amber-600",
+    bg: "bg-amber-50",
+    title: "Document Preparation",
+    description: "We send a short checklist so the assigned partner walks into your session already briefed on your numbers.",
+  },
+  {
+    icon: Handshake,
+    color: "text-emerald-600",
+    bg: "bg-emerald-50",
+    title: "Strategy Session",
+    description: "Meet your advisor — in person, via video, or by phone — for a focused, actionable session on your objectives.",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Sterling CA restructured our cross-border tax position and saved us six figures within the first year. The discovery call alone was worth it.",
+    name: "Meera Anand",
+    title: "CFO, Vantage Logistics",
+  },
+  {
+    quote: "Booking was effortless and the partner who called us back had clearly read our brief. Rare to see that level of preparation.",
+    name: "Daniel Osei",
+    title: "Founder, Osei & Farrow",
+  },
+  {
+    quote: "We use them for statutory audit every year now. Precise, on schedule, and they explain findings in plain language.",
+    name: "Priya Raghunathan",
+    title: "Director of Finance, Nimbus Health",
+  },
 ];
 
 function getUpcomingDates() {
@@ -70,6 +128,7 @@ export default function Consaltation() {
   const update = (key, value) => setForm((f) => ({ ...f, [key]: value }));
   const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
   const back = () => setStep((s) => Math.max(s - 1, 0));
+  const handleSubmit = () => setSubmitted(true);
 
   const canContinue = () => {
     if (step === 0) return !!form.type;
@@ -82,7 +141,7 @@ export default function Consaltation() {
   if (submitted) {
     return (
       <section className="min-h-[80vh] flex items-center justify-center px-6 py-12 bg-surface">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-xl w-full bg-white border border-border rounded-2xl p-8 md:p-12 text-center shadow-2xl shadow-slate-900/5"
@@ -113,7 +172,7 @@ export default function Consaltation() {
   return (
     <main className="min-h-screen bg-surface">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-12 lg:py-20 grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        
+
         {/* Left Interactive Briefing Board */}
         <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
           <div>
@@ -161,15 +220,15 @@ export default function Consaltation() {
             </div>
           </div>
 
-          {/* Flat Horizontal Progress Indicator */}
+          {/* Progress Indicator */}
           <div className="space-y-2">
             <div className="flex justify-between text-[11px] font-bold text-slate-400 uppercase tracking-widest px-1">
               <span>Progress</span>
               <span>{Math.round(((step + 1) / steps.length) * 100)}%</span>
             </div>
             <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full bg-primary" 
+              <motion.div
+                className="h-full bg-primary"
                 animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
                 transition={{ duration: 0.3 }}
               />
@@ -202,13 +261,17 @@ export default function Consaltation() {
                             key={t.id}
                             onClick={() => update("type", t.id)}
                             className={`w-full text-left border rounded-xl p-5 flex items-start gap-4 transition-all ${
-                              isSelected 
-                                ? "border-primary bg-primary/[0.02] shadow-sm" 
+                              isSelected
+                                ? "border-primary bg-primary/[0.02] shadow-sm"
                                 : "border-border hover:border-slate-300 bg-white"
                             }`}
                           >
-                            <div className={`p-3 rounded-xl border ${isSelected ? "bg-primary text-white border-primary" : "bg-surface text-slate-600 border-border"}`}>
-                              <t.icon size={18} />
+                            <div className={`p-3 rounded-xl border transition-all ${
+                              isSelected
+                                ? "bg-primary text-white border-primary scale-105"
+                                : `${t.bg} ${t.color} border-transparent`
+                            }`}>
+                              <t.icon size={18} strokeWidth={2.25} />
                             </div>
                             <div className="space-y-1">
                               <p className="text-sm font-bold text-primary">{t.title}</p>
@@ -229,21 +292,28 @@ export default function Consaltation() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       {serviceAreas.map((area) => {
                         const isSelected = form.service === area.title;
+                        const AreaIcon = area.icon;
                         return (
                           <button
                             key={area.title}
                             onClick={() => update("service", area.title)}
-                            className={`text-left border rounded-xl p-5 flex flex-col justify-between h-44 transition-all ${
-                              isSelected 
-                                ? "border-primary bg-primary/[0.02] shadow-sm" 
+                            className={`text-left border rounded-xl p-5 flex flex-col justify-between min-h-[160px] transition-all ${
+                              isSelected
+                                ? "border-primary bg-primary/[0.02] shadow-sm"
                                 : "border-border hover:border-slate-300 bg-white"
                             }`}
                           >
-                            <div className={`p-2.5 rounded-lg inline-block ${isSelected ? "bg-primary text-white" : "bg-surface text-secondary"}`}>
-                              <area.icon size={18} />
+                            <div className="flex flex-col gap-2">
+                              <div className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all ${
+                                isSelected
+                                  ? "bg-primary text-white border-primary scale-105"
+                                  : `${area.bg} ${area.color} border-transparent`
+                              }`}>
+                                <AreaIcon size={19} strokeWidth={2.25} />
+                              </div>
+                              <p className="text-sm font-bold text-primary tracking-tight leading-snug">{area.title}</p>
                             </div>
                             <div>
-                              <p className="text-sm font-bold text-primary tracking-tight leading-snug">{area.title}</p>
                               <p className="text-[11px] text-slate-500 mt-1.5 line-clamp-2 leading-relaxed">{area.description}</p>
                             </div>
                           </button>
@@ -267,8 +337,11 @@ export default function Consaltation() {
                 {step === 2 && (
                   <div className="space-y-6">
                     <div>
-                      <h2 className="font-heading font-bold text-xl text-primary mb-2 flex items-center gap-2">
-                        <Calendar size={18} className="text-secondary" /> Allocation Date
+                      <h2 className="font-heading font-bold text-xl text-primary mb-2 flex items-center gap-2.5">
+                        <span className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                          <Calendar size={16} strokeWidth={2.25} />
+                        </span>
+                        Allocation Date
                       </h2>
                       <p className="text-xs text-slate-500 mb-4">Select an upcoming corporate business morning or afternoon.</p>
                       <div className="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
@@ -296,8 +369,11 @@ export default function Consaltation() {
                     </div>
 
                     <div className="pt-2">
-                      <h2 className="font-heading font-bold text-xl text-primary mb-2 flex items-center gap-2">
-                        <Clock size={18} className="text-secondary" /> Window Slot
+                      <h2 className="font-heading font-bold text-xl text-primary mb-2 flex items-center gap-2.5">
+                        <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                          <Clock size={16} strokeWidth={2.25} />
+                        </span>
+                        Window Slot
                       </h2>
                       <p className="text-xs text-slate-500 mb-4">Select a specific temporal asset interface block.</p>
                       <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
@@ -320,12 +396,12 @@ export default function Consaltation() {
                   </div>
                 )}
 
-                {/* Step 3: Enterprise & Individual Metadata */}
+                {/* Step 3: Enterprise Metadata */}
                 {step === 3 && (
                   <div>
                     <h2 className="font-heading font-bold text-xl text-primary mb-2">Corporate Identity Credentials</h2>
                     <p className="text-xs text-slate-500 mb-6">Complete secure field values to register authorization parameters.</p>
-                    
+
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="text-xs font-bold text-primary uppercase tracking-wide mb-1.5 block">Full Name *</label>
@@ -347,7 +423,8 @@ export default function Consaltation() {
 
                     <div className="mt-4">
                       <label className="text-xs font-bold text-primary uppercase tracking-wide mb-1.5 block">Executive Directives / Special Notes</label>
-                      <Textarea
+                      <textarea
+                        className="w-full rounded-lg border border-border p-3 text-sm bg-white focus:outline-none focus:border-primary"
                         value={form.message}
                         onChange={(e) => update("message", e.target.value)}
                         placeholder="Provide details on any complex structural updates or custom filing timelines required..."
@@ -359,12 +436,12 @@ export default function Consaltation() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Pagination Controls Interface Footer */}
+            {/* Pagination Controls Footer */}
             <div className="flex items-center justify-between border-t border-border pt-6 mt-8">
-              <Button 
-                variant="ghost" 
-                onClick={back} 
-                disabled={step === 0} 
+              <Button
+                variant="ghost"
+                onClick={back}
+                disabled={step === 0}
                 className="gap-2 font-heading text-xs font-bold uppercase tracking-wider h-11 px-4 rounded-xl"
               >
                 <ArrowLeft size={14} /> Back
@@ -392,6 +469,110 @@ export default function Consaltation() {
         </div>
 
       </div>
+
+      {/* ================= SECTION 1: Trust Bar ================= */}
+      <section className="border-y border-border bg-white">
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-12">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            {trustPoints.map((tp, i) => (
+              <motion.div
+                key={tp.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="flex items-center gap-3"
+              >
+                <div className="w-11 h-11 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center shrink-0">
+                  <tp.icon size={20} strokeWidth={2.25} />
+                </div>
+                <div>
+                  <p className="font-heading font-black text-2xl text-primary leading-none tracking-tight">
+                    {tp.value}
+                  </p>
+                  <p className="text-xs text-slate-500 mt-1">{tp.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SECTION 2: What Happens After You Book ================= */}
+      <section className="max-w-[1280px] mx-auto px-6 lg:px-12 py-20">
+        <div className="max-w-2xl mb-12">
+          <span className="text-[10px] uppercase tracking-[0.2em] font-extrabold text-secondary px-2.5 py-1 rounded-md bg-secondary/10 border border-secondary/20 inline-block mb-3">
+            The Process
+          </span>
+          <h2 className="font-heading font-black text-3xl text-primary tracking-tight">
+            What Happens After You Book
+          </h2>
+          <p className="text-slate-600 text-sm mt-3 leading-relaxed">
+            No black box. Here's exactly what to expect once you lock your session.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {processTimeline.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.1 }}
+              className="relative bg-white border border-border rounded-2xl p-6"
+            >
+              <span className="absolute -top-3 -left-3 w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
+                {i + 1}
+              </span>
+              <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${item.bg} ${item.color}`}>
+                <item.icon size={20} strokeWidth={2.25} />
+              </div>
+              <h3 className="font-heading font-bold text-primary">{item.title}</h3>
+              <p className="text-xs text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ================= SECTION 3: Testimonials ================= */}
+      <section className="bg-primary py-20">
+        <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
+          <div className="max-w-2xl mb-12">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-extrabold text-secondary px-2.5 py-1 rounded-md bg-secondary/20 border border-secondary/30 inline-block mb-3">
+              Client Voices
+            </span>
+            <h2 className="font-heading font-black text-3xl text-white tracking-tight">
+              Trusted by Finance Leaders
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className="bg-white/5 border border-white/10 rounded-2xl p-6"
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <Star key={s} size={13} className="text-secondary fill-secondary" />
+                  ))}
+                </div>
+                <Quote size={20} className="text-secondary/50 mb-2" />
+                <p className="text-sm text-slate-200 leading-relaxed">{t.quote}</p>
+                <div className="mt-5 pt-4 border-t border-white/10">
+                  <p className="text-sm font-bold text-white">{t.name}</p>
+                  <p className="text-xs text-slate-400">{t.title}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
