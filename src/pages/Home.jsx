@@ -8,10 +8,10 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Hero from "@/pages/home/Hero";
-import ServicesGrid from "@/pages/home/ServicesGrid";
-import TaxReadinessWidget from "@/pages/home/TaxReadinessWidget";
-import MetricsSection from "@/pages/home/MetricsSection";
+import Hero from "../components/pages/home/Hero";
+import ServicesGrid from "../components/pages/home/ServicesGrid";
+import TaxReadinessWidget from "../components/pages/home/TaxReadinessWidget";
+import MetricsSection from "../components/pages/home/MetricsSection";
 
 // Static data for the sections
 const onboardingSteps = [

@@ -520,14 +520,18 @@ export default function Consaltation() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: i * 0.1 }}
-              className="relative bg-white border border-border rounded-2xl p-6"
+              className="bg-white border border-border rounded-2xl p-6"
             >
-              <span className="absolute -top-3 -left-3 w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center">
-                {i + 1}
-              </span>
-              <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-4 ${item.bg} ${item.color}`}>
-                <item.icon size={20} strokeWidth={2.25} />
+              {/* FIXED: Removed 'absolute' and structured inside a flex container line inline with the icon */}
+              <div className="flex items-center justify-between mb-4">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${item.bg} ${item.color}`}>
+                  <item.icon size={20} strokeWidth={2.25} />
+                </div>
+                <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center shrink-0">
+                  {i + 1}
+                </span>
               </div>
+              
               <h3 className="font-heading font-bold text-primary">{item.title}</h3>
               <p className="text-xs text-slate-500 mt-2 leading-relaxed">{item.description}</p>
             </motion.div>

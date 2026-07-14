@@ -76,13 +76,13 @@ export default function Navbar() {
 
         {/* Dynamic Action Buttons Group */}
         <div className="hidden md:flex items-center gap-4">
-          <Link
+          {/* <Link
             to="/contact"
             className="text-xs font-bold uppercase tracking-wider text-slate-600 hover:text-primary transition-colors py-2 relative group"
           >
             <span>Call Desk</span>
             <span className="absolute bottom-1 left-0 w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-full" />
-          </Link>
+          </Link> */}
           
           <Button 
             size="sm" 
